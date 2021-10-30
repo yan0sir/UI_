@@ -1,0 +1,27 @@
+{
+  "name": "specula",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.23.0",
+    "jquery": "^3.6.0",
+    "sync-request": "^6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vjtrollkilla/Specula-Frontend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vjtrollkilla/Specula-Frontend/issues"
+  },
+  "homepage": "https://github.com/vjtrollkilla/Specula-Frontend#readme",
+  "description": "",
+  "devDependencies": {
+    "electron": "^15.2.0"
+  }
+}

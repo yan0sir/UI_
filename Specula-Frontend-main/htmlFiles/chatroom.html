@@ -1,0 +1,210 @@
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Specula | Chatroom</title>
+</head>
+<style>
+
+body {
+  background-color: rgb(245, 245, 245);
+  color: rgb(27, 27, 27);
+  font-family: 'Ubuntu', sans-serif; 
+}
+   
+.dark-mode {
+  background-color: #002b2b;
+  color: white;
+  
+}
+
+button{
+  cursor: pointer;
+position: fixed;
+border-radius: 40px;
+padding: 15px;
+background-color: rgb(97, 0, 0);
+color: white;
+
+}
+.topnav {
+  overflow: hidden;
+  background-color: rgb(92, 0, 0);
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  border-radius: 30px;
+}
+
+.topnav a:hover {
+  background-color: rgb(192, 190, 190);
+  color: black;
+  cursor: pointer;
+
+}
+
+.topnav a.active {
+  background-color: #610000;
+  color: white;
+  cursor: pointer;
+
+}
+
+
+
+.topnav b {
+  float: right;
+  display: block;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+
+.topnav b:hover {
+  text-decoration-line: underline;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+
+</style>
+<script>
+    const electron = require("electron")
+    window.jQuery = window.$ = require('jquery')
+    
+    const {
+        ipcRenderer
+    } = require("electron")
+
+</script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+    </script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
+    </script>
+
+<body>
+
+
+    <div class="topnav" id="myTopnav">
+        <a  class="active">Home</a>
+        <a >Exams</a>
+        <a >Rooms</a>
+        <a >Profile</a>
+        <b >Log out</b>
+        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+          <i class="fa fa-bars"></i>
+        </a>
+      </div>
+
+    <button  onclick="myFunction()" style="font-size:24px"> <i class="fa fa-adjust"></i></button>
+
+    
+    <script>
+    function myFunction() {
+       var element = document.body;
+       element.classList.toggle("dark-mode");
+    }
+    </script>
+
+
+
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+
+            
+            <div class="col-6">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1" class="h4 pt-5">Chatroom</label>
+                        <textarea class="form-control" id="chat-text" rows="10"></textarea><br>
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" id="input" type="text"></br>
+                    </div>
+                    <input class="btn btn-secondary btn-lg btn-block" id="submit" type="button" value="Send">
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+        ipcRenderer.on('roomInformation', (event, message) => {
+            let roomName = message;
+            console.log(message); // Returns: {'SAVED': 'File Saved'}
+            console.log(roomName)
+        document.querySelector('#submit').onclick = function (e) {
+            const messageInputDom = document.querySelector('#input');
+            const message = messageInputDom.value;
+            chatSocket.send(JSON.stringify({
+                'message': message,
+                'username': 'VJ',
+            }));
+            messageInputDom.value = '';
+        };
+
+
+
+        const chatSocket = new WebSocket(
+            "ws://127.0.0.1:8000/ws/chat/" + roomName + "/"
+        );
+        console.log(chatSocket)
+        chatSocket.onmessage = function (e) {
+            const data = JSON.parse(e.data);
+            console.log(data)
+            document.querySelector('#chat-text').value += (data.username + ': ' + data.message + '\n')
+        }
+        });
+        
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+</body>
+
+</html>

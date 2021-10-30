@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Specula | Create Room</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photon.css">
+
+    <!-- Electron Javascript -->
+
+</head>
+<style>
+
+body {
+  background-color: rgb(233, 123, 123);
+  color: rgb(27, 27, 27);
+  font-family: 'Ubuntu', sans-serif; 
+}
+   
+.dark-mode {
+  background-color: #002b2b;
+  color: rgb(255, 255, 255);
+  
+}
+
+button{
+  cursor: pointer;
+position: fixed;
+border-radius: 40px;
+border-style: none;
+padding: 15px;
+background-color: rgb(97, 0, 0);
+color: white;
+
+}
+
+.mainc{
+ background-color: #ffffff;
+  width: 600px;
+  height: 300px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 0px 1px 15px #c2c2c23f;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 450px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+
+h1{
+  padding-top: 40px;
+  color: #8d8d8d;
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+
+.submit {
+   
+  cursor: pointer;
+    border-radius: 5em;
+    color: #fff;
+    background-color: rgb(119, 0, 0);
+    padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      margin-left: -60px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+  }
+  .submit:hover {
+    cursor: pointer;
+      border-radius: 5em;
+      color: #fff;
+      background-color: rgb(173, 0, 0);
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-bottom: 10px;
+      padding-top: 10px;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 13px;
+      box-shadow: 0 0 20px 1px rgba(0, 0, 0, 0.04);
+    }
+
+    .form {
+width: 76%;
+height: 170px;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(148, 0, 0, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+margin-left: 65px;
+font-family: 'Ubuntu', sans-serif;
+}
+
+</style>
+<body>
+    
+    <!-- Wrap your entire app inside .window -->
+    <div class="window">
+        <!-- .toolbar-header sits at the top of your app -->
+
+        <!-- Your app's content goes inside .window-content -->
+        <div class="window-content">
+            <button  onclick="myFunction()" style="font-size:24px"> <i class="fa fa-adjust"></i></button>
+
+    
+            <script>
+            function myFunction() {
+               var element = document.body;
+               element.classList.toggle("dark-mode"); }
+            </script>
+
+            <div class="mainc">
+                
+
+                <h1>Create Room</h1>
+
+                
+                <form>
+                    <div class="form">
+                        <label>Enter room name</label>
+                        <input type="email" class="form-control" placeholder="Room ID" id="roomname">
+              
+                        <label>Enter password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+
+                    </div>
+
+                </form>
+                <button class="submit" id="submit" onclick="">Login</button>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        const electron = require("electron")
+
+        const {
+            ipcRenderer
+        } = electron
+        document.querySelector('#submit').onclick = function (e) {
+            let roomname = document.querySelector('#roomname')
+            let roomName = roomname.value
+            console.log(roomName)
+            ipcRenderer.send('roomName',roomName)
+        }   
+
+
+        
+    </script>
+</body>
+
+</html>

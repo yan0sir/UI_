@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Specula | Student Login</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photon.css">
+
+    <!-- Electron Javascript -->
+
+</head>
+
+<style>
+
+
+body {
+  background-color: rgb(245, 245, 245);
+  color: rgb(27, 27, 27);
+  font-family: 'Ubuntu', sans-serif; 
+}   
+.dark-mode {
+  background-color: #002b2b;
+  color: white;
+  
+}
+
+button{
+  cursor: pointer;
+position: fixed;
+border-radius: 40px;
+border-style: none;
+padding: 15px;
+background-color: rgb(97, 0, 0);
+color: white;
+
+}
+.mainS{
+  background-color: #ffffff;
+  width: 400px;
+  height: 300px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 0px 1px 15px #c2c2c23f;
+  align-items: center;
+  width: 76%;
+color: rgb(38, 50, 56);
+font-weight: 700;
+font-size: 14px;
+letter-spacing: 1px;
+background: rgba(136, 126, 126, 0.04);
+padding: 10px 20px;
+border: none;
+border-radius: 20px;
+outline: none;
+box-sizing: border-box;
+border: 2px solid rgba(0, 0, 0, 0.02);
+margin-bottom: 50px;
+margin-left: 46px;
+text-align: center;
+margin-bottom: 27px;
+font-family: 'Ubuntu', sans-serif;
+}
+</style>
+
+<script>
+    const electron = require("electron")
+    const {
+        ipcRenderer
+    } = electron
+    ipcRenderer.send('asynchronous-message', 'wtf')
+    ipcRenderer.on('asynchronous-message', (event, message) => {
+        console.log(message); 
+    });
+
+    function checkDatabase() {
+
+        ipcRenderer.send('RoomLogin')
+        console.log("RoomLogin")
+
+    }
+</script>
+
+<body>
+    
+    <!-- Wrap your entire app inside .window -->
+    <div class="window">
+        <!-- .toolbar-header sits at the top of your app -->
+
+        <!-- Your app's content goes inside .window-content -->
+        <div class="window-content">
+            
+            <div class="padded-more">
+                <button  onclick="myFunction()" style="font-size:24px"> <i class="fa fa-adjust"></i></button>
+
+    
+                <script>
+                function myFunction() {
+                   var element = document.body;
+                   element.classList.toggle("dark-mode"); }
+                </script>
+
+                <form class="mainS">
+                    
+                    <div >
+                        <label>Email address</label>
+                        <input type="email" class="form-control" placeholder="Email">
+                
+                        <label>Password</label>
+                        <input type="password" class="form-control" placeholder="Password">
+
+                    </div>
+
+                <button class="button" type="submit" onclick="checkDatabase()">Login</button>
+
+            </form>
+                
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

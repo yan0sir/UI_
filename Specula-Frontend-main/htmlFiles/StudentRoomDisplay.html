@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Specula | Room</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/photon.css">
+
+    <!-- Electron Javascript -->
+
+</head>
+
+
+<style>
+body {
+  background-color: rgb(224, 164, 164);
+  color: rgb(27, 27, 27);
+  font-family: 'Ubuntu', sans-serif; 
+}   
+.dark-mode {
+  background-color: #002b2b;
+  color: white;
+  
+}
+
+button{
+  cursor: pointer;
+position: fixed;
+border-radius: 40px;
+border-style: none;
+padding: 15px;
+background-color: rgb(97, 0, 0);
+color: white;
+
+}
+
+</style>
+
+<body>
+
+    <!-- Wrap your entire app inside .window -->
+    <div class="window">
+        <!-- .toolbar-header sits at the top of your app -->
+
+
+        <!-- Your app's content goes inside .window-content -->
+        <div class="window-content">
+            <button  onclick="myFunction()" style="font-size:24px"> <i class="fa fa-adjust"></i></button>
+
+    
+            <script>
+            function myFunction() {
+               var element = document.body;
+               element.classList.toggle("dark-mode"); }
+            </script>
+
+            <div class="padded-more">
+                <video id="videoCamera" autoplay></video>
+                <button class="button" onclick="exitRoom()">Exit Room</button>
+
+            </div>
+
+
+
+        </div>
+    </div>
+    <script>
+        const electron = require("electron")
+        const {
+            ipcRenderer
+        } = electron
+        navigator.mediaDevices.getUserMedia({
+            video: {
+                width: {
+                    min: 640,
+                    max: 1280
+                },
+                height: {
+                    min: 480,
+                    max: 720
+                }
+            }
+        }).then(stream => {
+            document.getElementById("videoCamera").srcObject = stream;
+        })
+
+        function exitRoom() {
+
+            ipcRenderer.send('window-all-closed')
+            console.log("window-all-closed")
+        }
+    </script>
+</body>
+
+</html>

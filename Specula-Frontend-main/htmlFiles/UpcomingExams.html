@@ -5,7 +5,9 @@
     <title>Specula | Upcoming Exams</title>
 
     <link rel="stylesheet" href="/css/photon.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="index.css" />
+<script defer src="render.js"></script>
    
   </head>
 <style>
@@ -16,8 +18,12 @@ body {
 }   
 .dark-mode {
   background-color: #002b2b;  
+  color: #ffffff;
 }
 
+.dark-mode h1{
+   color: #ffffff8f;
+}
 button{
   cursor: pointer;
 position: fixed;
@@ -29,9 +35,10 @@ color: white;
 
 }
 h1{
-  color: rgb(145, 0, 0);
+  color: rgb(87, 0, 0);
   padding: 40px;
   text-align: center;
+  background-color: #6800001a;
     }
     
 * {
@@ -66,9 +73,7 @@ h1{
     min-height: 100vh;
 
 }
-.meetings.demo {
-    display: none;
-}
+
 .meetings {
     left: -25px;
     top: 36px;
@@ -92,7 +97,8 @@ h1{
     cursor: pointer;
 }
 .meeting {
-    background-color: #000000;
+    border-radius: 10px;
+    background-color: #0055408f;
     width: 500px;
     height: 120px;
     margin-bottom: 20px;
@@ -126,8 +132,12 @@ h1{
     position: relative;
 }
 .meeting.current {
-  border-radius: 20px;
-    background-color: #ffffff;
+    border-radius: 20px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgba(128, 128, 128, 0.158);
+    background-color: #ffffffbe;
+    color: black;
     height: 165px;
     width: 600px;
     padding: 20px 25px 20px 50px;

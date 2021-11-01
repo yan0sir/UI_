@@ -8,7 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="index.css" />
+<script defer src="render.js"></script>
     <title>Specula | Chatroom</title>
 </head>
 <style>
@@ -29,6 +31,7 @@ button{
   cursor: pointer;
 position: fixed;
 border-radius: 40px;
+border-style: solid;
 padding: 15px;
 background-color: rgb(97, 0, 0);
 color: white;
@@ -37,12 +40,12 @@ color: white;
 .topnav {
   overflow: hidden;
   background-color: rgb(92, 0, 0);
+  color: #f2f2f2;
 }
 
 .topnav a {
   float: left;
   display: block;
-  color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -51,16 +54,17 @@ color: white;
 }
 
 .topnav a:hover {
-  background-color: rgb(192, 190, 190);
-  color: black;
+  background-color: rgb(207, 207, 207);
+  color: rgb(138, 187, 74);
   cursor: pointer;
 
 }
 
 .topnav a.active {
-  background-color: #610000;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(92, 0, 0);
   cursor: pointer;
+  border-radius: 0%;
 
 }
 
@@ -135,9 +139,7 @@ color: white;
         <a >Rooms</a>
         <a >Profile</a>
         <b >Log out</b>
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-          <i class="fa fa-bars"></i>
-        </a>
+     
       </div>
 
     <button  onclick="myFunction()" style="font-size:24px"> <i class="fa fa-adjust"></i></button>
